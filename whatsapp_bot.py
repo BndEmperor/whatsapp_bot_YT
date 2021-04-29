@@ -81,6 +81,16 @@ class WhatsApp:
         except Exception as e:
             print('Exception (send_message): ', e)
 
+    # Close response box
+    def nav_x(self):
+        try:
+            position = pt.locateOnScreen('x.png', confidence=.7)
+            pt.moveTo(position[0:2], duration=self.speed)
+            pt.moveRel(10, 10, duration=self.speed)  # x,y has to be adjusted depending on your computer
+            mouse.click(Button.left, 1)
+        except Exception as e:
+            print('Exception (nav_x): ', e)
+
 
 # Initialises the WhatsApp Bot
 wa_bot = WhatsApp(speed=.5, click_speed=.4)
@@ -88,6 +98,7 @@ wa_bot = WhatsApp(speed=.5, click_speed=.4)
 # Run the programme in a loop
 while True:
     wa_bot.nav_green_dot()
+    wa_bot.nav_x()
     wa_bot.nav_message()
     wa_bot.get_message()
     wa_bot.nav_input_box()
